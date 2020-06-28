@@ -1,12 +1,18 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: boinc-ds
+  labels:
+    k8s-app: boinc-po
 spec:
+  selector:
+    matchLabels:
+      name: boinc-po
   template:
     metadata:
-      name: boinc-po
+      name: boinc-ds
       labels:
+        name: boinc-po
         daemon: boinc-po
     spec:
       containers:
@@ -16,4 +22,4 @@ spec:
            - name: boincurl
              value: "www.worldcommunitygrid.org"
            - name: boinckey
-             value: "YOUR_KEY_COPIED_FROM:www.worldcommunitygrid.org"
+             value: "1121981_b6d1a4ad2bcb77687d55c88ffa8a6374"
